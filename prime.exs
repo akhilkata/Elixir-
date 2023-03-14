@@ -1,9 +1,14 @@
-defmodule Pattern do
-  def print_pattern(n) do
-    for i <- 1..n do
-      IO.puts(String.duplicate("*", i))
+defmodule Prime do
+  def is_prime(number) do
+    if number <= 1 do
+      false
+    else
+      Enum.all?(2..(trunc(:math.sqrt(number))), fn(divisor) ->
+        rem(number, divisor) != 0
+      end)
     end
   end
 end
 
-Pattern.print_pattern(6)
+IO.puts(Prime.is_prime(7))  # true
+IO.puts(Prime.is_prime(12)) # false
